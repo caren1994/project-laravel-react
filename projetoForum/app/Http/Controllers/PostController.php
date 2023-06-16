@@ -30,7 +30,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $category=Category::where('name',$request->input('category_id'))->first();
+        $category=Category::where('name',$request->input('category'))->first();
         if(!$category){
             return response([
                 'message'=>'Category not found'
@@ -51,9 +51,15 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Post $post)
+    public function show(int $id)
     {   
-        //
+        $post=Post::where('id',$id)->first();
+        if(!$post){
+            return response([
+                'message'=>'Category not found'
+            ],404);
+        }
+        return response($post,200);
     }
 
     /**
@@ -75,8 +81,12 @@ class PostController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Post $post)
+    public function destroy(int $id)
     {
-        //
+        $post=Post::findOrFail($id);
+        $post->delete();
+        return response([
+            'message'=>'Post deleted'
+        ],200);
     }
 }
