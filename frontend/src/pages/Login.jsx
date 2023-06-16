@@ -12,7 +12,7 @@ useEffect(()=>{
 fetch("http://localhost:8000/sanctum/csrf-cookie",{
   headers:new Headers({'Access-Control-Allow-Credentials':true})
 }).then((data)=>{
-  data.headers.get("set-cookie")
+  console.log(data.headers.get('XSRF-TOKEN'))
   console.log(document.cookie)
 });
 
