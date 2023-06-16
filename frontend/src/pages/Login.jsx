@@ -1,29 +1,40 @@
 import { useEffect, useState } from "react";
 import {AiOutlineUser} from 'react-icons/ai';
+import axios from "axios";
 export default function Login(){
 
 
-const [firstName, setFirstName] = useState("");
-const [lastName, setLastName] = useState("");
+// const [firstName, setFirstName] = useState("");
+// const [lastName, setLastName] = useState("");
 const [email, setEmail] = useState("");
 const [password, setPassword] = useState("");
 
 useEffect(()=>{
-fetch("http://localhost:8000/sanctum/csrf-cookie",{
-  headers:new Headers({'Access-Control-Allow-Credentials':true})
-}).then((data)=>{
-  console.log(data.headers.get('XSRF-TOKEN'))
-  console.log(document.cookie)
-});
-
- },[]);
+axios.defaults.withCredentials = true;
+axios.get("http://localhost:8000/sanctum/csrf-cookie").then((data)=>{
+  console.log(data)});
+  
+},[]); 
+// axios({
+//   method: 'post',
+//   url: '/user/12345',
+//   data: {
+//     nome: 'Victor',
+//     sobrenome: 'Nogueira'
+//   }
+// });
 
 const handleSubmit = () => {
-fetch("http://localhost:8000/api/login",{
-  method: "POST",
-  headers: new Headers({"Content-Type":"application/json"}),
-  body: JSON.stringify({email, password }),
-}).then((res)=>res.json()).then((data)=>console.log(data))};
+  const token=document.cookie.split("=")[1];
+  console.log(token);
+
+axios.post("http://localhost:8000/api/login",{
+  email,
+  password
+},{headers: {"Content-Type":"application/json","X-XSRF-TOKEN":token}})
+.then((data)=>console.log(data)).catch((err)=>console.log(err));
+
+}
 return (
   <>
   <main className="flex min-h-screen flex-col items-center justify-between p-24 bg-slate-200  ">
@@ -37,7 +48,7 @@ return (
         </span>
       </div>
 
-      <label htmlFor="firstName" >
+      {/* <label htmlFor="firstName" >
       <input type="text" name="fistName" id="firtsName" placeholder="firstName"
         className="border-solid border-2 bg-slate-200 "
         value={firstName}
@@ -49,7 +60,7 @@ return (
         className="border-style: solid "
         value={lastName}
         onChange={({target})=>setLastName(target.value)} />
-      </label>
+      </label> */}
 
       <label htmlFor="email" >
       <input type="email" name="email" id="email" placeholder="email"
