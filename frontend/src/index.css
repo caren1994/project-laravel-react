@@ -1,13 +1,34 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+input {
+  background-color: rgba(0, 0, 0, 0);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.formulario{
+  @apply m-auto  w-[4/12] flex-col rounded-lg  bg-white py-[3rem]
+  shadow-2xl md:w-[4/12] md:py-[2.5rem] 
+}
+
+.divCircle{
+  @apply  flex mx-auto   h-32 w-32
+  items-center justify-center rounded-full 
+}
+
+
+.mainPage{
+  @apply flex h-screen w-screen items-center bg-slate-200
+}
+.divInput{
+  @apply mt-8 flex flex-col items-center space-y-4 px-5
+}
+.label{
+  @apply rounded-md  bg-slate-200
+}
+.input{
+@apply h-9 px-2
+}
+.button{
+  @apply text-white mb-10 h-9 w-52 rounded  text-white
 }
