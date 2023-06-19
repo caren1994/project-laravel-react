@@ -61,7 +61,9 @@ export default function Forum () {
 				category,
 				content
 			}, { headers });
-			console.log(response);
+			console.log(response.data);
+			const result = response.data;
+			setPosts([ ...post, result ]);
 			setResponse(response.data.message);
 		} catch (err) {
 			setError(err.response.data.message);
@@ -161,14 +163,21 @@ export default function Forum () {
 							<p className="text-red-700">
 								{response}
 							</p>)}
-						{error && (
-							<p className="text-red-700">
-								{error}
-							</p>)}
+						{
+
+							error && (
+								<p className="mt-3 text-center text-red-700">
+									{error}
+								</p>)
+						}
 
 					</div>
 				</form>
 			</section>
+			{post.length === 0 && (
+				<p className="mt-6 text-center text-red-700">
+								Posts não encontrados
+				</p>)}
 			<section className=" mb-2 ml-32 mt-10  flex flex-row space-x-2">
 
 				<p>Busque por:</p>

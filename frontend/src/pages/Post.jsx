@@ -83,8 +83,8 @@ export default function Post () {
 				post
 			},
 			{ headers });
-			// const result = response.data;
-			// setComments(...comments, result);
+			const result = response.data;
+			setComments([ ...comments, result ]);
 			console.log(response);
 		} catch (err) {
 			setErrorComment(err.response.data.message);
@@ -148,7 +148,7 @@ export default function Post () {
 			</section>
 			{
 				errorComment && (
-					<p>{errorComment}</p>
+					<p className="mt-4 text-center text-red-700">{errorComment}</p>
 				)}
 			<section className="flex flex-col items-center">
 				{
@@ -165,7 +165,7 @@ export default function Post () {
 				}
 			</section>
 			{
-				errorBusca && (
+				comments.length === 0 && (
 					<p className="mt-4 text-center">{errorBusca}</p>
 				)}
 		</>
