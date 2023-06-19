@@ -43,18 +43,17 @@ class PostController extends Controller
             ],404);
         }
 
-        Post::create([
+        $post = Post::create([
             'title'=>$request->input('title'),
             'name'=>$request->input('name'),
             'user_id'=>$request->user()->id,
             'content'=>$request->input('content'),
             'category_id'=>$category->id,
             
-        
         ]);
-        return response([
-            'message'=>'Post criado com sucesso!'
-        ],200);
+        return response(
+            $post
+        ,200);
 
     }
 
@@ -91,7 +90,7 @@ class PostController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request,int $id)
+    public function destroy(Request $request,string $id)
     {
         $post=Post::findOrFail($id);
         if(!$post->user_id == $request->user()->id){
