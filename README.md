@@ -8,7 +8,7 @@ Foi feito uma API RESTful utilizando Laravel e PHP para gerenciar as operações
 
  - inicie fazendo o clone deste repositório usando o comando abaixo.
 
-    git clone git@github.com:caren1994/project-laravel-react.git
+    git clone 'git@github.com:caren1994/project-laravel-react.git'
    
    ### Para o banco de dados vamos usar o mysql , então rode o comando abaixo para criar um container do mysql
 
@@ -99,7 +99,7 @@ vale resaltar que após o login um token é recebido e ele é enviado em todas a
     }
     logo após vamos subir a aplicação com o comando;
 
-    -{
+    - {
    npm run start
     }
 
