@@ -15,8 +15,8 @@ Foi feito uma API RESTful utilizando Laravel e PHP para gerenciar as operações
 ...
 
 ### após esse comando abra seu workbench e crie um banco de dados chamado db_forum com o comando:
+
 ```bash
-  
 DROP DATABASE IF EXISTS db_forum; 
 CREATE DATABASE db_forum;
 
@@ -43,7 +43,7 @@ composer install
 
 - no arquivo .env troque os valores das variáveis de ambiente de acordo com a sua configuração do banco de dados e os dados da senha e do usuário informados no comando da criação do container mysql.
 
-  ```bash
+```bash
     
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
