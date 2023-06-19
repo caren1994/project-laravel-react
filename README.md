@@ -1,4 +1,5 @@
-Projeto Forum Fullstack
+# Projeto Forum Fullstack
+
 ## Descrição
 
 Foi feito uma API RESTful utilizando Laravel e PHP para gerenciar as operações do fórum, como criar posts, comentarnos posts, buscar posts por categoria e visualizar as mensagens de cada post.Para autenticação foi usado o Laravel Sanctum.O front-end dessa aplicação foi feito com React.js e para sua estilização foi usado o tailwind.
