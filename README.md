@@ -77,7 +77,10 @@ php artisan db:seed --class=CategorySeeder
 
 ### Antes de falarmos sobre as rotas , vamos dar uma olhada em como ficou nosso banco de dados e a relação das tabelas ?
 
+<details>
  ![DER](./frontend/public/diagrama-forum-laravel-react.png)
+ 
+</details>
 
 
 ### Agora que vocẽ ja sabe como é o nosso banco de dados , vou te mostrar quais são as rotas possíveis
