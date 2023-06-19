@@ -11,8 +11,10 @@ Foi feito uma API RESTful utilizando Laravel e PHP para gerenciar as operações
     git clone 'git@github.com:caren1994/project-laravel-react.git'
    
    ### Para o banco de dados vamos usar o mysql , então rode o comando abaixo para criar um container do mysql
-
+   
+```bash
 docker container run -d -it --name db_forum -e MYSQL_ROOT_PASSWORD=root -p 3306:3306 mysql:8
+```
 
 ### após esse comando abra seu workbench e crie um banco de dados chamado db_forum com o comando:
 
@@ -74,8 +76,10 @@ php artisan db:seed --class=CategorySeeder
    explicação: esse comando vai popular as tabelas users e categories respectivamente
 
 ### Antes de falarmos sobre as rotas , vamos dar uma olhada em como ficou nosso banco de dados e a relação das tabelas ?
-|:--:|
-|![DER](./frontend/public/diagrama-forum-laravel-react.png)|
+
+<details>
+ |![DER](./frontend/public/diagrama-forum-laravel-react.png)|
+ <details/>
 
 ### Agora que vocẽ ja sabe como é o nosso banco de dados , vou te mostrar quais são as rotas possíveis
 #### Temos as rotas de register e login:
