@@ -30,21 +30,31 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'title'=>'required',
+            'name'=>'required',
+            'category'=>'required',
+            'content'=>'required'
+        ]);
         $category=Category::where('name',$request->input('category'))->first();
         if(!$category){
             return response([
-                'message'=>'Category not found'
+                'message'=>'Categoria não encontrada'
             ],404);
         }
 
-        return Post::create([
+        Post::create([
             'title'=>$request->input('title'),
             'name'=>$request->input('name'),
+            'user_id'=>$request->user()->id,
             'content'=>$request->input('content'),
             'category_id'=>$category->id,
             
         
         ]);
+        return response([
+            'message'=>'Post criado com sucesso!'
+        ],200);
 
     }
 
@@ -56,7 +66,7 @@ class PostController extends Controller
         $post=Post::where('id',$id)->first();
         if(!$post){
             return response([
-                'message'=>'Category not found'
+                'message'=>'Post não encontrado'
             ],404);
         }
         return response($post,200);
@@ -84,9 +94,14 @@ class PostController extends Controller
     public function destroy(int $id)
     {
         $post=Post::findOrFail($id);
+        if($post->user_id == $request->user()->id){
+            return response([
+                'message'=>'você não é autorizado a deletar esse post'
+            ],404);
+        }
         $post->delete();
         return response([
-            'message'=>'Post deleted'
+            'message'=>'Post deletado com sucesso!'
         ],200);
     }
 }
