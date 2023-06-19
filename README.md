@@ -22,8 +22,7 @@ CREATE DATABASE db_forum;
 
 ```
 
-
-explicação: os comandos acima excluem o banco de dados caso exista e cria um novo.
+- explicação: os comandos acima excluem o banco de dados caso exista e cria um novo.
 
 ## Back-end
 
@@ -63,7 +62,7 @@ DB_PASSWORD=root
 php artisan migrate 
 
  ```
-    explicação: faz a migração das tabelas para o banco de dados
+- explicação: faz a migração das tabelas para o banco de dados
 
 ```bash
    
@@ -123,7 +122,7 @@ vale resaltar que após o login um token é recebido e ele é enviado em todas a
     
     cd frontend
   ```
-    logo após vamos subir a aplicação com o comando;
+  logo após vamos subir a aplicação com o comando;
 
   ```bash
     
@@ -131,7 +130,8 @@ vale resaltar que após o login um token é recebido e ele é enviado em todas a
 
 ```
 
-    -Uau você está na página de login, você pode usar um user já existente que salvamos no banco de dados com o UserSeeder lembra? ou você pode criar um novo navegando para a página de criar usuário.
+- Uau você está na página de login, você pode usar um user já existente que salvamos no banco de dados com o UserSeeder lembra? ou você pode criar um novo navegando para a página de criar usuário.
+
 ```bash
   
 'email' : 'admin@gmail.com',
