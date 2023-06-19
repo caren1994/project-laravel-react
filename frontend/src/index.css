@@ -32,3 +32,25 @@ input {
 .button{
   @apply text-white mb-10 h-9 w-52 rounded  text-white
 }
+.sectionCreate{
+  @apply flex flex-col items-center space-y-4 
+}
+.formularioForum{
+  @apply  w-80 flex-col   bg-white py-[1rem]
+  shadow-2xl md:w-[6/12] md:py-[2.5rem] 
+}
+.divICreate{
+  @apply flex flex-col py-[1rem]  items-center space-y-2
+}
+.labelForum{
+  @apply rounded-md  bg-slate-200 w-60
+}
+.inputForum{
+  @apply h-7 px-2 w-60
+  }
+  .inputForumContent{
+    @apply h-9 px-2 w-60
+    }
+.buttonForum{
+  @apply text-white  bg-fuchsia-800  h-8 w-40 rounded  text-white
+}
