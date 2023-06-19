@@ -1,21 +1,30 @@
 import React, { useState } from "react";
 import { AiOutlineUser } from "react-icons/ai";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
+
 export default function Login () {
+	const history = useHistory();
 	const [ name, setName ] = useState("");
 	const [ email, setEmail ] = useState("");
 	const [ password, setPassword ] = useState("");
+	const [ error, setError ] = useState(null);
 
-	const handleSubmit = () => {
-		const token = document.cookie.split("=")[1];
-		console.log(token);
+	const handleSubmit = async () => {
+		try {
+			const token = document.cookie.split("=")[1];
+			console.log(token);
 
-		axios.post("http://localhost:8000/api/register", {
-			name,
-			email,
-			password
-		}, { headers: { "Content-Type": "application/json", "X-XSRF-TOKEN": token } })
-			.then((data) => console.log(data)).catch((err) => console.log(err));
+			const response = await axios.post("http://localhost:8000/api/register", {
+				name,
+				email,
+				password
+			}, { headers: { "Content-Type": "application/json", "X-XSRF-TOKEN": token } });
+			console.log(response);
+			history.push("/");
+		} catch (err) {
+			setError(err.response.message);
+		}
 	};
 
 	return (
@@ -52,6 +61,8 @@ export default function Login () {
 						</label>
 						<button type="button" className="button  bg-fuchsia-800" onClick={handleSubmit}>Enter</button>
 					</div>
+					{error && <p className="mt-3 text-center text-red-700">{error}</p>
+					}
 				</form>
 
 			</main>

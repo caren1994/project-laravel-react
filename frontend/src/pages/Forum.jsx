@@ -11,6 +11,7 @@ export default function Forum () {
 	const [ response, setResponse ] = useState("");
 	const [ error, setError ] = useState(null);
 	const [ errorBusca, setErrorBusca ] = useState(null);
+	const [ errorDelete, setErrorDelete ] = useState(null);
 	const [ post, setPosts ] = useState([]);
 	const [ nameCategory, setNameCategory ] = useState("");
 
@@ -108,6 +109,28 @@ export default function Forum () {
 			console.log(err);
 		}
 	};
+
+	const handleDelete = async (id) => {
+		try {
+			const tokenUser = getToken("token");
+			const token = document.cookie.split("=")[1];
+			console.log(token);
+			const headers = {
+				Accept: "application/json",
+				"Content-Type": "application/json",
+				"X-XSRF-TOKEN": token,
+
+				Authorization: `Bearer ${tokenUser}`
+			};
+			await axios.delete(`http://localhost:8000/api/post/${id}`,
+				{ headers });
+			const PostsUpdates = post.filter((item) => item.id !== id);
+			setPosts(PostsUpdates);
+		} catch (err) {
+			setErrorDelete(err.response.data.message);
+			console.log(err);
+		}
+	};
 	return (
 		<>
 			<section className=" sectionCreate">
@@ -174,18 +197,28 @@ export default function Forum () {
 								{errorBusca}
 							</p>)
 						: post.map((Post) => (
-							<div key={Post.id} className=" mb-20 mt-10 flex flex-col items-center border-b-2 border-solid border-orange-600 shadow-xl md:w-6/12">
+							<div key={Post.id} className=" mb-20 mt-10 flex w-screen flex-col items-center border-b-2 border-solid border-orange-600 shadow-xl md:w-6/12">
 								<p className="mt-3">{Post.name}</p>
 
-								<h1 className=" py-2 text-center text-2xl font-bold">{Post.title}</h1>
+								<h1 className="  text-center text-2xl font-bold">{Post.title}</h1>
+								<div className="mt-3 flex flex-row">
+									<section className="flex flex-row justify-evenly space-x-7 px-1">
 
-								<section className="flex flex-row justify-between space-x-20 px-3">
+										<p className="">{Post.content}</p>
+										<button type="button" className=" h-8 w-20 rounded  bg-fuchsia-800 text-white"
+											onClick={() => handleSubmit(Post.id)}>Ver Post</button>
+									</section>
+									<button type="button" className="h-8 w-20 rounded bg-amber-400 text-black"
+										onClick={() => handleDelete(Post.id)}>Excluir</button>
+								</div>
+								{
 
-									<p className="text-center">{Post.content}</p>
-									{/* <a href={`/post/${Post.id}`} className="mb-9 text-orange-400 ">Ver Post</a> */}
-									<button type="button" className=" w-20 rounded  bg-fuchsia-800 text-white"
-										onClick={() => handleSubmit(Post.id)}>Ver Post</button>
-								</section>
+									errorDelete && (
+										<p className="mt-3 text-center text-red-700">
+											{errorDelete}
+										</p>)
+								}
+
 							</div>
 						))
 				}

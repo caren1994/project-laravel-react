@@ -91,10 +91,10 @@ class PostController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(int $id)
+    public function destroy(Request $request,int $id)
     {
         $post=Post::findOrFail($id);
-        if($post->user_id == $request->user()->id){
+        if(!$post->user_id == $request->user()->id){
             return response([
                 'message'=>'você não é autorizado a deletar esse post'
             ],404);

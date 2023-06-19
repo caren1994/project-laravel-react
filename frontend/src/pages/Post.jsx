@@ -114,11 +114,12 @@ export default function Post () {
 
 	return (
 		<>
-			<section>
-				<a href="/forum" className="mb-9 mr-3 mt-3 flex  flex-row  px-2 text-orange-400"> <BsArrowLeft style={{ fontSize: "1.8em" }}/></a>
+			<a href="/forum" className="mb-9 mr-3 mt-3 flex  flex-row  px-2 text-orange-400"> <BsArrowLeft style={{ fontSize: "1.8em" }}/></a>
+			<section className="flex flex-col items-center">
+				<h1 className="text-2xl text-orange-600">Comente e ajude um colega Desenvolvedor</h1>
 				{
 					post.length > 0 && post.map((Post) => (
-						<div key={Post.id} className=" mb-20 mt-10  rounded-md border-2  border-solid border-fuchsia-800 py-6 shadow-xl">
+						<div key={Post.id} className=" mb-20 mt-10  rounded-md border-2  border-solid border-fuchsia-800 py-6 shadow-xl md:w-4/12">
 							<p className="mt-3">{Post.name}</p>
 
 							<h1 className=" py-2 text-center text-2xl font-bold">{Post.title}</h1>
@@ -135,25 +136,27 @@ export default function Post () {
 						</div>
 					))}
 			</section>
-			<section className="flex h-20 flex-row items-center justify-between ">
-				<label htmlFor='comment'>
-					<input type='text' id='comment' placeholder="seu comentário" className="ml-2 h-20 rounded-md border-2 border-solid border-amber-600 px-2 "
-						value={content} onChange={({ target }) => setContent(target.value)} />
-				</label>
-				<button type="button" className=" mr-2 h-8 w-20  rounded-md  bg-fuchsia-800 text-white"
-					onClick={handleCreate}>Responder</button>
+			<section className="flex flex-col items-center ">
+				<section className=" flex h-20 flex-row items-center justify-between space-x-6 ">
+					<label htmlFor='comment'>
+						<input type='text' id='comment' placeholder="seu comentário" className="ml-2 h-20 rounded-md border-2 border-solid border-amber-600 px-2 "
+							value={content} onChange={({ target }) => setContent(target.value)} />
+					</label>
+					<button type="button" className=" mr-2 h-8 w-20  rounded-md  bg-fuchsia-800 text-white"
+						onClick={handleCreate}>Responder</button>
+				</section>
 			</section>
 			{
 				errorComment && (
 					<p>{errorComment}</p>
 				)}
-			<section>
+			<section className="flex flex-col items-center">
 				{
 					comments.length > 0 && comments.map((item) => (
-						<div key={item.id} className=" mb-10 mt-14 border-y-2 border-solid border-slate-200 shadow-xl">
+						<div key={item.id} className=" mb-10 mt-14 items-center border-y-2 border-solid border-slate-200 text-center shadow-xl md:w-screen md:border-none md:py-3">
 							<p className="mt-3">{item.name}</p>
 
-							<h1 className=" py-2 text-center text-2xl font-bold">{item.content}</h1>
+							<h1 className=" py-2 text-center  text-2xl font-bold">{item.content}</h1>
 							<button type="button" className=" w-20 rounded  bg-fuchsia-800 text-white" onClick={() => handleDelete(item.id)}>X</button>
 
 						</div>
