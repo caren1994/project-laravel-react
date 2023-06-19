@@ -74,7 +74,8 @@ php artisan db:seed --class=CategorySeeder
    explicação: esse comando vai popular as tabelas users e categories respectivamente
 
 ### Antes de falarmos sobre as rotas , vamos dar uma olhada em como ficou nosso banco de dados e a relação das tabelas ?
-....
+|:--:|
+|![DER](./app/frontend/public/diagrama-forum-laravel-react.png)|
 
 ### Agora que vocẽ ja sabe como é o nosso banco de dados , vou te mostrar quais são as rotas possíveis
 #### Temos as rotas de register e login:
