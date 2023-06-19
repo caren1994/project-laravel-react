@@ -12,7 +12,7 @@ Foi feito uma API RESTful utilizando Laravel e PHP para gerenciar as operações
    
    ### Para o banco de dados vamos usar o mysql , então rode o comando abaixo para criar um container do mysql
 
-...
+docker container run -d -it --name db_forum -e MYSQL_ROOT_PASSWORD=root mysql:8
 
 ### após esse comando abra seu workbench e crie um banco de dados chamado db_forum com o comando:
 
