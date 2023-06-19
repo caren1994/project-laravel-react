@@ -77,7 +77,7 @@ php artisan db:seed --class=CategorySeeder
 
 ### Antes de falarmos sobre as rotas , vamos dar uma olhada em como ficou nosso banco de dados e a relação das tabelas ?
 
- |![DER](./frontend/public/diagrama-forum-laravel-react.png)|
+ ![DER](./frontend/public/diagrama-forum-laravel-react.png)
 
 
 ### Agora que vocẽ ja sabe como é o nosso banco de dados , vou te mostrar quais são as rotas possíveis
@@ -133,8 +133,7 @@ vale resaltar que após o login um token é recebido e ele é enviado em todas a
   ```bash
     
    npm run start
-
-```
+  ```
 
 - Uau você está na página de login, você pode usar um user já existente que salvamos no banco de dados com o UserSeeder lembra? ou você pode criar um novo navegando para a página de criar usuário.
 
