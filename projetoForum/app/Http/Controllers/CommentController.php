@@ -11,15 +11,20 @@ class CommentController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index(int $id)
     {
-        $post=Post::where('id',$request->input('post'))->first();
+        $post=Post::where('id',$id)->first();
         if(!$post){
             return response([
                 'message'=>'Post not found'
             ],404);
         }
         $result=Comment::where('post_id',$post->id)->get(); 
+        if($result->isEmpty()){
+            return response([
+                'message'=>'Comentários não encontrados'
+            ],404);
+        }
         return response($result,200);
     }
 
@@ -36,15 +41,21 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
+            $request->validate([
+                'name'=>'required',
+                'post'=>'required',
+                'content'=>'required'
+            ]);
             $post=Post::where('id',$request->input('post'))->first();
             // echo($post);
             if(!$post){
                 return response([
-                    'message'=>'Post not found'
+                    'message'=>'Post não encontrado'
                 ],404);
             }
             return Comment::create([
                 'name'=>$request->input('name'),
+                'user_id'=>$request->user()->id,
                 'post_id'=>$post->id,
                 'content'=>$request->input('content'),
                 
@@ -79,12 +90,17 @@ class CommentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(int $id)
+    public function destroy(Request $request, string $id)
     {
         $comment=Comment::findOrFail($id);
+        if(!$comment->user_id==$request->user()->id){
+            return response([
+                'message'=>'você não é autorizado a deletar esse comentário'
+            ],404);
+        }
         $comment->delete();
         return response([
-            'message'=>'Comment deleted'
+            'message'=>'Comentário deletado com sucesso!'
         ],200);
     }
 }

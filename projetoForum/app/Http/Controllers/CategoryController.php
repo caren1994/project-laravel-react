@@ -35,18 +35,18 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Request $request)
+    public function show(string $name)
     {
-        $category=Category::where('name',$request->input('name'))->first();
+        $category=Category::where('name',$name)->first();
         if(!$category){
             return response([
-                'message'=>'Category not found'
+                'message'=>'Categoria não encontrada'
             ],404);
         }
         $result = Post::where('category_id',$category->id)->get();
         if(!$result){
             return response([
-                'message'=>'not exist none post about that category'
+                'message'=>'Posts não encontrados'
             ],404);
         }
         return response($result,200);
