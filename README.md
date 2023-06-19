@@ -100,7 +100,7 @@ vale resaltar que após o login um token é recebido e ele é enviado em todas a
   2-post ('/comment') para criar um novo comentaŕio
   3-delete ('/comment/{id}') para deletar um ccomentário
 </details>
-  #### E por último e não menos importante temos a rota de category  que  busca os posts de acordo com aquela categoria
+ ### E por último e não menos importante temos a rota de category  que  busca os posts de acordo com aquela categoria
 <details>
   1-get ('/comment/{name}') recebe um name por param e retorna os posts de acordo com aquela categoria recebida
 </details>
