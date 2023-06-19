@@ -15,10 +15,10 @@ Foi feito uma API RESTful utilizando Laravel e PHP para gerenciar as operações
 ...
 
 ### após esse comando abra seu workbench e crie um banco de dados chamado db_forum com o comando:
-- {
+```bash
     DROP DATABASE IF EXISTS db_forum; 
     CREATE DATABASE db_forum;
- }
+ ```
 
   
 
