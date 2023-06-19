@@ -1,4 +1,5 @@
-Projeto Forum Fullstack
+# Projeto Forum Fullstack
+
 ## Descrição
 
 Foi feito uma API RESTful utilizando Laravel e PHP para gerenciar as operações do fórum, como criar posts, comentarnos posts, buscar posts por categoria e visualizar as mensagens de cada post.Para autenticação foi usado o Laravel Sanctum.O front-end dessa aplicação foi feito com React.js e para sua estilização foi usado o tailwind.
@@ -11,8 +12,10 @@ Foi feito uma API RESTful utilizando Laravel e PHP para gerenciar as operações
     git clone 'git@github.com:caren1994/project-laravel-react.git'
    
    ### Para o banco de dados vamos usar o mysql , então rode o comando abaixo para criar um container do mysql
-
-...
+   
+```bash
+docker container run -d -it --name db_forum -e MYSQL_ROOT_PASSWORD=root -p 3306:3306 mysql:8
+```
 
 ### após esse comando abra seu workbench e crie um banco de dados chamado db_forum com o comando:
 
@@ -74,8 +77,12 @@ php artisan db:seed --class=CategorySeeder
    explicação: esse comando vai popular as tabelas users e categories respectivamente
 
 ### Antes de falarmos sobre as rotas , vamos dar uma olhada em como ficou nosso banco de dados e a relação das tabelas ?
-|:--:|
-|![DER](./app/frontend/public/diagrama-forum-laravel-react.png)|
+
+
+ ![DER](./frontend/public/diagrama-forum-laravel-react.png)
+ 
+
+
 
 ### Agora que vocẽ ja sabe como é o nosso banco de dados , vou te mostrar quais são as rotas possíveis
 #### Temos as rotas de register e login:
@@ -130,8 +137,7 @@ vale resaltar que após o login um token é recebido e ele é enviado em todas a
   ```bash
     
    npm run start
-
-```
+  ```
 
 - Uau você está na página de login, você pode usar um user já existente que salvamos no banco de dados com o UserSeeder lembra? ou você pode criar um novo navegando para a página de criar usuário.
 
